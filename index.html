@@ -26,10 +26,7 @@
         var xAxis;
         var sent = 0;
 
-        window.addEventListener("deviceorientation", function (event) {
-            sent += 1;
-            document.getElementById("sent").innerHTML = sent;
-            
+        window.addEventListener("deviceorientation", function (event) { 
             with (event){
                 zAxis = gamma;
                 xAxis = webkitCompassHeading;
@@ -49,10 +46,12 @@
                 xAxis = webkitCompassHeading;
             }
         });
-        function sendData() {
-        var data = {
+       function sendData() {
+         sent += 1;
+         document.getElementById("sent").innerHTML = sent;
+         var data = {
           "message": "Hello from HTML!"
-        };
+         };
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "https://dweet.io/dweet/for/your-thing-name", true);
