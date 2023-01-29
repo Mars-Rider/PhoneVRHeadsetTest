@@ -44,19 +44,19 @@
                     round(xAxis) +
                     "Â°";
 
-                   zAxis = gamma;
-                    xAxis = webkitCompassHeading;
-              var toSend = {
+                zAxis = gamma;
+                xAxis = webkitCompassHeading;
+            var toSend = {
                 zVal : zAxis,
                 xVal : xAxis
-              }
+            }
 
-              var jsonString = JSON.stringify(toSend);
-              var xhr = new XMLHttpRequest;
+            var jsonString = JSON.stringify(toSend);
+            var xhr = new XMLHttpRequest;
 
-              xhr.open("POST", "https://dweet.io:443/dweet/for/VRPhoneTest/");
-              xhr.setRequestHeader("Content-Type", "application/json");
-              xhr.send(jsonString); 
+            xhr.open("POST", "https://dweet.io:443/dweet/for/VRPhoneTest/");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(jsonString); 
         });
         setInterval(function () {
         if (O) document.getElementById("paragraph").innerHTML = O;
