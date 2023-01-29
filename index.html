@@ -14,18 +14,21 @@
   </head>
   <body>
     <p id = "paragraph">Val</p>
+    <p id = "sent">Val</p>
     <script>
         var O;
         var zVal;
         var xVal;
         var zAxis;
         var xAxis;
+        var sent = 0;
 
         window.addEventListener("deviceorientation", function (event) {
             with (event)
                 with (Math)
                     zAxis = gamma;
                     xAxis = webkitCompassHeading;
+          
                     O =
                     "<pre>alpha = " +
                     round(alpha) +
@@ -39,22 +42,24 @@
 
                     zAxis = gamma;
                     xAxis = webkitCompassHeading;
+          
+                    var toSend = {
+                      zVal : zAxis,
+                      xVal : xAxis
+                    }
+
+                    var jsonString = JSON.stringify(toSend);
+                    var xhr = new XMLHttpRequest;
+
+                    xhr.open("POST", "https://dweet.io:443/dweet/for/VRPhoneTest/");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.send(jsonString);
+                    sent = 1;    
         });
         setInterval(function () {
         if (O) document.getElementById("paragraph").innerHTML = O;
+               document.getElementById("sent").innerHTML = sent;
         }, 40);
-
-        var toSend = {
-            zVal : zAxis,
-            xVal : xAxis
-        }
-
-        var jsonString = JSON.stringify(toSend);
-        var xhr = new XMLHttpRequest;
-
-        xhr.open("POST", "https://dweet.io:443/dweet/for/VRPhoneTest/");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(jsonString);
     </script>
   </body>
 </html>
