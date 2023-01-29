@@ -24,15 +24,17 @@
         window.addEventListener("deviceorientation", function (event) {
             with (event)
                 with (Math)
+                    zAxis = gamma;
+                    xAxis = webkitCompassHeading;
                     O =
                     "<pre>alpha = " +
                     round(alpha) +
                     "Â°\nbeta  = " +
                     round(beta) +
                     "Â°\ngamma = " +
-                    round(gamma) +
+                    round(zAxis) +
                     "Â°\ncompass = " +
-                    round(webkitCompassHeading) +
+                    round(xAxis) +
                     "Â°";
 
                     zAxis = gamma;
