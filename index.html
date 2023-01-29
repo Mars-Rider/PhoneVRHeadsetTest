@@ -47,14 +47,12 @@
             }
         });
        function sendData() {
-         sent += 1;
-         document.getElementById("sent").innerHTML = sent;
-         var data = {
+        var data = {
           "message": "Hello from HTML!"
-         };
+        };
 
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://dweet.io/dweet/for/your-thing-name", true);
+        xhr.open("POST", "https://cors-anywhere.herokuapp.com/https://dweet.io/dweet/for/your-thing-name", true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(data));
       }
