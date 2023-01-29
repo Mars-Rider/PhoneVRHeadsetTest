@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #paragraph{
+            font-size: 48px;
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <p id = "paragraph">Val</p>
+    <script>
+        var O;
+        var zVal;
+        var xVal;
+        var zAxis;
+        var xAxis;
+
+        window.addEventListener("deviceorientation", function (event) {
+            with (event)
+                with (Math)
+                    O =
+                    "<pre>alpha = " +
+                    round(alpha) +
+                    "Â°\nbeta  = " +
+                    round(beta) +
+                    "Â°\ngamma = " +
+                    round(gamma) +
+                    "Â°\ncompass = " +
+                    round(webkitCompassHeading) +
+                    "Â°";
+
+                    zAxis = gamma;
+                    xAxis = webkitCompassHeading;
+        });
+        setInterval(function () {
+        if (O) document.getElementById("paragraph").innerHTML = O;
+        }, 40);
+
+        var toSend = {
+            zVal : zAxis,
+            xVal : xAxis
+        }
+
+        var jsonString = JSON.stringify(toSend);
+        var xhr = new XMLHttpRequest;
+
+        xhr.open("POST", "https://dweet.io:443/dweet/for/VRPhoneTest");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(jsonString);
+    </script>
+  </body>
+</html>
