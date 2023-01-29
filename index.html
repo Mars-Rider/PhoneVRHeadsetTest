@@ -16,6 +16,24 @@
             text-align: center;
         }
     </style>
+     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $.ajax({
+          type: "POST",
+          url: "https://dweet.io/dweet/for/your-thing-name",
+          data: JSON.stringify({
+            key1: "value1",
+            key2: "value2",
+            key3: "value3"
+          }),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function(data){
+            console.log(data);
+          }
+        });
+      });
   </head>
   <body>
     <p id = "paragraph">Val</p>
