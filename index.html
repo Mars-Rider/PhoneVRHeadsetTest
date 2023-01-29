@@ -27,7 +27,8 @@
         var sent = 0;
 
         window.addEventListener("deviceorientation", function (event) {
-            document.getElementById("sent").innerHTML = "heard";
+            sent += 1;
+            document.getElementById("sent").innerHTML = sent;
             zAxis = gamma;
             xAxis = webkitCompassHeading;
             with (event)
