@@ -55,7 +55,7 @@
             var jsonString = JSON.stringify(toSend);
             var xhr = new XMLHttpRequest;
 
-            xhr.open("POST", "https://dweet.io/dweet/for/VRPhoneTest");
+            xhr.open("POST", "https://dweet.io/dweet/for/VRPhoneTest", true);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(jsonString);
             document.getElementById("paragraph").innerHTML = O
