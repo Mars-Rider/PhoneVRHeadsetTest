@@ -16,29 +16,21 @@
             text-align: center;
         }
     </style>
-     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-      $(document).ready(function(){
-        $.ajax({
-          type: "POST",
-          url: "https://dweet.io/dweet/for/your-thing-name",
-          data: JSON.stringify({
-            key1: "value1",
-            key2: "value2",
-            key3: "value3"
-          }),
-          contentType: "application/json; charset=utf-8",
-          dataType: "json",
-          success: function(data){
-            console.log(data);
-          }
-        });
-      });
+     
   </head>
   <body>
     <p id = "paragraph">Val</p>
     <p id = "sent">sent</p>
+    <script src="dweet.io.js"></script>
     <script>
+        dweetio.dweet_for("my-thing", {some:"data"}, function(err, dweet){
+
+          console.log(dweet.thing); // "my-thing"
+          console.log(dweet.content); // The content of the dweet
+          console.log(dweet.created); // The create date of the dweet
+
+        });
+      
         var O;
         var zAxis;
         var xAxis;
