@@ -23,6 +23,8 @@
     <p id = "sent">sent</p>
     <script src="dweet.io.js"></script>
     <script>
+        var dweetio = new dweetIOClient();
+      
         dweetio.dweet_for("my-thing", {some:"data"}, function(err, dweet){
 
           console.log(dweet.thing); // "my-thing"
