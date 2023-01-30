@@ -21,8 +21,8 @@
   <body>
     <p id = "paragraph">Val</p>
     <p id = "sent">sent</p>
-    <script src="dweet.io.js"></script>
-    <script>
+    <script src="dweet.io.js">
+        var dweetIOClient = require("./../dweet.io.js");
         var dweetio = new dweetIOClient();
       
         dweetio.dweet_for("my-thing", {some:"data"}, function(err, dweet){
