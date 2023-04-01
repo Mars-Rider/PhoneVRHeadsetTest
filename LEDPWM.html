@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - LED PWM</title>
+    <link href="LEDPWM.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lexend">
+</head>
+<body>
+    <div class = "wrapper">
+        <span>Test 1</span>
+        <div class = "input">
+            <input type="range" class="c-rng" min="0" max="255" step="1" value="125" data-range="circular" id="slider" onchange="onChange()"/>
+            <button id = "on" onclick="onClick()">ON</button>
+        </div>
+        <span></span>
+    </div>    
+    <script src="LEDPWM.js"></script>
+</body>
+</html>

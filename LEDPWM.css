@@ -1,0 +1,41 @@
+.wrapper{
+    height: 400px;
+    width: 300px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    display: grid;
+    justify-items: center;
+    grid-template-columns: [first] 70px  40px [end];
+}
+
+input{
+    -webkit-appearance: none;
+    appearance: none;
+
+  height: 15px; /* Slider handle height */
+  border-radius: 7.5px;
+  background: hsl(216, 100%, 63%); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 0;
+    background: hsl(216, 100%, 57%);
+    cursor: pointer;
+  }
+
+span{
+    height: 70px;
+
+    font-size: 64px;
+    font-family: "Lexend", sans-serif;
+}
