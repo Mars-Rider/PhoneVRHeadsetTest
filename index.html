@@ -1,80 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        #paragraph{
-            font-size: 48px;
-            text-align: center;
-        }
-      
-        #sent{
-            font-size: 48px;
-            text-align: center;
-        }
-    </style>
-     
-  </head>
-  <body>
-    <p id = "paragraph">Val</p>
-    <p id = "sent">sent</p>
-    <script src="//dweet.io/client/dweet.io.min.js">
-        var dweetIOClient = require("./../dweet.io.js");
-        var dweetio = new dweetIOClient();
-      
-        dweetio.dweet_for("my-thing", {some:"data"}, function(err, dweet){
 
-          console.log(dweet.thing); // "my-thing"
-          console.log(dweet.content); // The content of the dweet
-          console.log(dweet.created); // The create date of the dweet
+    <link href="temp.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
-        });
-      
-        var O;
-        var zAxis;
-        var xAxis;
-        var sent = 0;
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" /> -->
 
-        window.addEventListener("deviceorientation", function (event) { 
-            with (event){
-                zAxis = gamma;
-                xAxis = webkitCompassHeading;
-                with (Math) {
-                    O =
-                    "<pre>alpha = " +
-                    round(alpha) +
-                    "Â°\nbeta  = " +
-                    round(beta) +
-                    "Â°\ngamma = " +
-                    round(zAxis) +
-                    "Â°\ncompass = " +
-                    round(xAxis) +
-                    "Â°";
-                }
-                zAxis = gamma;
-                xAxis = webkitCompassHeading;
-            }
-        });
-       function sendData() {
-        var data = {
-          "message": "Hello from HTML!"
-        };
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+</head>
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://dweet.io/dweet/for/your-thing-name", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(JSON.stringify(data));
-      }
+<body>
+    <div id="wrapper">
+        <div class="swiper" id = "swiperttt">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide"><span class = "vall">1</span></div>
+              <div class="swiper-slide"><span class = "vall">2</span></div>
+              <div class="swiper-slide"><span class = "vall">3</span></div>
+              <div class="swiper-slide"><span class = "vall">4</span></div>
+              <div class="swiper-slide"><span class = "vall">5</span></div>
+              <div class="swiper-slide"><span class = "vall">Settings</span></div>
+              ...
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+          
+            <!-- If we need navigation buttons -->
+            <!-- <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div> -->
+          
+            <!-- If we need scrollbar -->
+            <!-- <div class="swiper-scrollbar"></div> -->
+          </div>
+    </div>
 
-      setInterval(sendData, 1000);
-         
-      setInterval(function () {
-       if (O) document.getElementById("paragraph").innerHTML = O;
-             //document.getElementById("sent").innerHTML = "";
-       }, 40);
-    </script>
-  </body>
+    <script src="temp.js"></script>
+</body>
+
 </html>
