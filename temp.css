@@ -110,8 +110,8 @@ svg{
 }
 
 .swiper {
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   background-image: radial-gradient( 
     var(--gridColor) var(--gridRadius), 
     transparent 9% 
@@ -157,9 +157,9 @@ svg{
 .swiper-slide span {
   display: inline-block;
   /* width: 9%;
-  height: 9vh; */
+  height: 9dvh; */
 
-  /* padding: calc(50vh - 16px); */
+  /* padding: calc(50dvh - 16px); */
 
   font-size: var(--sliderFontSize);
   font-family: Lato;
@@ -214,7 +214,7 @@ svg{
   
   height: var(--setExitButSize); 
   min-width: 200px;
-  max-width: 50vw;
+  max-width: 50dvw;
 }
 
 #appearance{
@@ -274,8 +274,8 @@ svg{
 .swiper-button-next-mobile.swiper-button-next{
   position: absolute !important;
 
-  height: 100vh !important;
-  width: 20vw !important;
+  height: 100dvh !important;
+  width: 20dvw !important;
 
   background-color: rgba(0, 0, 0, 0) !important;
 
@@ -287,8 +287,8 @@ svg{
 .swiper-button-prev-mobile.swiper-button-prev{
   position: absolute !important;
 
-  height: 100vh !important;
-  width: 20vw !important;
+  height: 100dvh !important;
+  width: 20dvw !important;
 
   background-color: rgba(0, 0, 0, 0) !important;
 
