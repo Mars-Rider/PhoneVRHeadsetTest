@@ -14,6 +14,50 @@ let isMobileDevice = regexp.test(details);
 // );
 // const element = <h1>Hello, world</h1>;
 // root.render(element);
+var root = document.querySelector(':root');
+
+var appearCount = 0;
+
+var appearanceBut = document.getElementById("appearanceBut");
+var appearance = document.getElementById("appearance");
+
+function changeAppearance(){
+  appearCount++;
+
+  if(appearCount%2 == 0){
+    console.log("Light Mode");
+
+    root.style.setProperty('--swiper-theme-color', '#222');
+    root.style.setProperty('--backgroundColor', '#fff');
+    root.style.setProperty('--fontColor', '#000');
+    root.style.setProperty('--gridColor', 'rgb(235, 235, 235)');
+    root.style.setProperty('--graphLinesColor', '#e3e3e3');
+
+    // appearanceBut.style.fill = "var(--backgroundColor)";
+    appearanceBut.style.stroke = "var(--graphLinesColor)";
+
+    localStorage.setItem("Appearance", "Light");
+  } else if(appearCount%2 != 0){
+    console.log("Dark Mode");
+
+    root.style.setProperty('--swiper-theme-color', '#fff');
+    root.style.setProperty('--backgroundColor', '#0c0c0c');
+    root.style.setProperty('--fontColor', '#fff');
+    root.style.setProperty('--gridColor', 'rgb(20, 20, 20)');
+    root.style.setProperty('--graphLinesColor', '#2a2a2a');
+
+    // appearanceBut.style.fill = "var(--backgroundColor)";
+    appearanceBut.style.stroke = "var(--graphLinesColor)";
+
+    localStorage.setItem("Appearance", "Dark");
+  }
+}
+
+var testAppear = localStorage.getItem("Appearance");
+
+if(testAppear == "Dark"){
+  changeAppearance();
+}
 
 const menu = document.getElementById("swiperttt");
 
@@ -26,6 +70,15 @@ let bullet = Array.from(
 if (!isMobileDevice) {
   dodf.innerHTML +=
     '<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>';
+
+  root.style.setProperty('--bulletGap', '6px');
+  root.style.setProperty('--bulletSize', '10px');
+} else {
+  root.style.setProperty('--bulletGap', '30px');
+  root.style.setProperty('--bulletSize', '12.5px');
+
+  dodf.innerHTML +=
+    '<div class="swiper-button-prev-mobile swiper-button-prev"></div><div class="swiper-button-next-mobile swiper-button-next"></div>';
 }
 
 var grid = document.getElementById("gridInput");
@@ -69,19 +122,19 @@ const swiper = new Swiper(".swiper", {
   },
 });
 
-function changeGrid() {
-  // grid.value = 17;
-  var valt = grid.value;
+// function changeGrid() {
+//   // grid.value = 17;
+//   var valt = grid.value;
 
-  // swiperttt.style.backgroundImage = ;
+//   // swiperttt.style.backgroundImage = ;
 
-  console.log(grid.value);
-  console.log(swiperttt.style.backgroundImage);
-}
+//   console.log(grid.value);
+//   console.log(swiperttt.style.backgroundImage);
+// }
 
-fontSize.addEventListener("onmouseover", function changeFontSize() {
-  // swiperttt.style. = "radial-gradient( rgb(244 244 244) " + grid.value + "%, transparent 9% );";
-});
+// fontSize.addEventListener("onmouseover", function changeFontSize() {
+//   // swiperttt.style. = "radial-gradient( rgb(244 244 244) " + grid.value + "%, transparent 9% );";
+// });
 
 if (!isMobileDevice) {
   console.log(isMobileDevice);
@@ -104,7 +157,7 @@ if (!isMobileDevice) {
     item.style.margin =
       "0 var(--swiper-pagination-bullet-horizontal-gap, 15px)";
 
-    console.log(item.style.fontSize);
+    // console.log(item.style.fontSize);
 
     var css =
       ".swiper-pagination-bullet:hover {outline: 0px var(--swiper-pagination-bullet-inactive-color, #000) solid;outline-offset: 0px;transition: 0.25s ease} ";
@@ -120,9 +173,13 @@ if (!isMobileDevice) {
   });
 
   vall.forEach((item) => {
-    item.style.fontSize = "66.7px";
+    if(!item.classList.contains('unitUnused')){
+      item.style.fontSize = "66.7px";
+    }
 
-    console.log(item.style.fontSize);
+    root.style.setProperty('--sliderFontSize', '66.7px');;
+
+    // console.log(item.style.fontSize);
   });
 
   menu.style.backgroundSize = "60px 60px";
@@ -133,6 +190,28 @@ setInterval(function () {
     menu.dataset.activeIndex = swiper.activeIndex;
   });
 }, 200);
+
+var c = "--";
+var f = "--";
+var h = "--";
+
+function getDweets(){
+  dweetio.get_latest_dweet_for("humiditytemptest", function(err, dweet){
+
+    var dweet = dweet[0]; // Dweet is always an array of 1
+
+    // console.log(dweet.thing); // The generated name
+    // console.log(dweet.content); // The content of the dweet
+    // console.log(dweet.created); // The create date of the dweet
+    c = dweet.content.celsius;
+    f = Math.round(dweet.content.fahrenheit);
+    h = dweet.content.humidity;
+});
+}
+
+setInterval(() => {
+  getDweets();
+}, 1500);
 
 var temps = [94, 94, 91, 91, 88, 94, 98];
 var highTemp;
@@ -145,13 +224,18 @@ function getInfo() {}
 var tempVal = document.getElementById("temp");
 var humdVal = document.getElementById("humd");
 
-tempVal.innerHTML = "94°F";
-humdVal.innerHTML = "9%";
+tempVal.innerHTML = "--°";
+humdVal.innerHTML = "--%";
 
 var id = document.getElementById("svgLine");
 // id.points[4].y=233;
 
+var celsiusOn = false;
+
+var numbRun = 0;
+
 function showInfo() {
+  
   highTemp = Math.max(...temps);
   lowTemp = Math.min(...temps);
 
@@ -172,17 +256,22 @@ function showInfo() {
 
   // id.setAttribute("points", points);
 
-  tempVal.innerHTML = "94°F";
-  humdVal.innerHTML = "9%";
+  if(celsiusOn){
+    tempVal.innerHTML = ""+ c +"°";
+  } else {
+    tempVal.innerHTML = ""+ f +"°";
+  }
 
-  localStorage.setItem("Font Size");
-  localStorage.setItem("Bullet Gap");
-  localStorage.setItem("Bullet Size");
-  localStorage.setItem("Graph Size");
-  localStorage.setItem("Humd Color");
-  localStorage.setItem("Temp Color");
-  localStorage.setItem("Accent Color");
-  localStorage.setItem("Grid Bullet Size");
+  humdVal.innerHTML = "" + h +"%";
+
+  // localStorage.setItem("Font Size");
+  // localStorage.setItem("Bullet Gap");
+  // localStorage.setItem("Bullet Size");
+  // localStorage.setItem("Graph Size");
+  // localStorage.setItem("Humd Color");
+  // localStorage.setItem("Temp Color");
+  // localStorage.setItem("Accent Color");
+  // localStorage.setItem("Grid Bullet Size");
 }
 var fontSze;
 var gridSze;
@@ -219,7 +308,7 @@ function updateSettings() {
 
 setInterval(function ff() {
   showInfo();
-}, 1000);
+}, 100);
 
 // localStorage.setItem("Font Size", );
 //   localStorage.setItem("Bullet Gap", );
@@ -229,3 +318,57 @@ setInterval(function ff() {
 //   localStorage.setItem("Temp Color", );
 //   localStorage.setItem("Accent Color", );
 //   localStorage.setItem("Grid Bullet Size", );
+
+var fUnit = document.getElementById('tempF');
+var cUnit = document.getElementById('tempC');
+
+var unitUse = fUnit;
+
+function changeUnit(){
+  if(fUnit.classList.contains('unitUsed')){
+    fUnit.classList.remove("unitUsed");
+    fUnit.classList.add("unitUnused");
+    cUnit.classList.remove("unitUnused");
+    cUnit.classList.add("unitUsed");
+
+    root.style.setProperty("--unitRight", cUnit.getBoundingClientRect().right + "px");
+
+    celsiusOn = true;
+    showInfo();
+    localStorage.setItem("Unit", "°C");
+
+    unitUse = cUnit;
+  } else {
+    fUnit.classList.remove("unitUnused");
+    fUnit.classList.add("unitUsed");
+    cUnit.classList.remove("unitUsed");
+    cUnit.classList.add("unitUnused");
+
+    root.style.setProperty("--unitRight", fUnit.getBoundingClientRect().right + "px");
+
+    celsiusOn = false;
+    showInfo();
+    localStorage.setItem("Unit", "°F");
+
+    unitUse = fUnit;
+  }
+}
+
+var unit = localStorage.getItem("Unit");
+
+if(unit == "°C"){
+  changeUnit();
+
+  unitUse = cUnit;
+}
+
+setInterval(() => {
+  root.style.setProperty("--unitRight", unitUse.getBoundingClientRect().right - unitUse.parentElement.getBoundingClientRect().left + "px");
+}, 50);
+
+
+// cUnit.parentElement.innerHTML = ;
+
+// var unused = Array(document.getElementsByClassName('unitUnused'));
+
+// unused.forEach(addEventListener('onclick', changeUnit()));
