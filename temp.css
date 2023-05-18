@@ -12,6 +12,8 @@
   --sliderFontSize: 3em;
 
   --gridRadius: 9%;
+  
+  --warnColor: rgba(200, 200, 200, 0.25);
 
   --gridColor: rgb(235, 235, 235);
   --swiper-theme-color: #222;
@@ -72,6 +74,43 @@
 
   --setExitButSize: 50px;
 } */
+
+.warn{
+  stroke: hsl(349, 100%, 50%);
+}
+
+.warnTxt{
+  font-size: 32px;
+  
+  font-family: Lato;
+  
+  color: var(--fontColor);
+}
+
+#warnWrap{
+  z-index: 15;
+
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  
+  max-width: 85vw;
+  min-width: max-content;
+  
+  padding: 15px 20px;
+  
+  background-color: var(--warnColor);
+  border-radius: 20px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  gap: 10px;
+
+  transition: 0.25s ease;
+}
 
 input[type="color"]{
   -webkit-appearance: none;
