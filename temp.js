@@ -31,6 +31,7 @@ function changeAppearance(){
     root.style.setProperty('--backgroundColor', '#fff');
     root.style.setProperty('--fontColor', '#000');
     root.style.setProperty('--gridColor', 'rgb(235, 235, 235)');
+    root.style.setProperty('--warnColor', 'rgba(200, 200, 200, 0.25)');
     root.style.setProperty('--graphLinesColor', '#e3e3e3');
 
     // appearanceBut.style.fill = "var(--backgroundColor)";
@@ -43,7 +44,8 @@ function changeAppearance(){
     root.style.setProperty('--swiper-theme-color', '#fff');
     root.style.setProperty('--backgroundColor', '#0c0c0c');
     root.style.setProperty('--fontColor', '#fff');
-    root.style.setProperty('--gridColor', 'rgb(20, 20, 20)');
+    root.style.setProperty('--gridColor', 'rgb(30, 30, 30)');
+    root.style.setProperty('--warnColor', 'rgba(30, 30, 30, 0.25)');
     root.style.setProperty('--graphLinesColor', '#2a2a2a');
 
     // appearanceBut.style.fill = "var(--backgroundColor)";
@@ -191,9 +193,9 @@ setInterval(function () {
   });
 }, 200);
 
-var c = "--";
-var f = "--";
-var h = "--";
+var c = null;
+var f = null;
+var h = null;
 
 function getDweets(){
   dweetio.get_latest_dweet_for("humiditytemptest", function(err, dweet){
@@ -230,6 +232,8 @@ humdVal.innerHTML = "--%";
 var id = document.getElementById("svgLine");
 // id.points[4].y=233;
 
+var warnWrap = document.getElementById("warnWrap");
+
 var celsiusOn = false;
 
 var numbRun = 0;
@@ -256,6 +260,8 @@ function showInfo() {
 
   // id.setAttribute("points", points);
 
+  
+
   if(celsiusOn){
     tempVal.innerHTML = ""+ c +"°";
   } else {
@@ -263,6 +269,22 @@ function showInfo() {
   }
 
   humdVal.innerHTML = "" + h +"%";
+  
+  if(celsiusOn){
+    if(c == null){
+      warnWrap.style.bottom = "50px";
+      tempVal.innerHTML = "--°";
+
+      humdVal.innerHTML = "--%";
+    }
+  } else {
+    if(f == null){
+      warnWrap.style.bottom = "50px";
+      tempVal.innerHTML = "--°";
+
+      humdVal.innerHTML = "--%";
+    }
+  }
 
   // localStorage.setItem("Font Size");
   // localStorage.setItem("Bullet Gap");
