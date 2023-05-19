@@ -14,39 +14,39 @@ let isMobileDevice = regexp.test(details);
 // );
 // const element = <h1>Hello, world</h1>;
 // root.render(element);
-var root = document.querySelector(':root');
+var root = document.querySelector(":root");
 
 var appearCount = 0;
 
 var appearanceBut = document.getElementById("appearanceBut");
 var appearance = document.getElementById("appearance");
 
-function changeAppearance(){
+function changeAppearance() {
   appearCount++;
 
-  if(appearCount%2 == 0){
+  if (appearCount % 2 == 0) {
     console.log("Light Mode");
 
-    root.style.setProperty('--swiper-theme-color', '#222');
-    root.style.setProperty('--backgroundColor', '#fff');
-    root.style.setProperty('--fontColor', '#000');
-    root.style.setProperty('--gridColor', 'rgb(235, 235, 235)');
-    root.style.setProperty('--warnColor', 'rgba(200, 200, 200, 0.25)');
-    root.style.setProperty('--graphLinesColor', '#e3e3e3');
+    root.style.setProperty("--swiper-theme-color", "#222");
+    root.style.setProperty("--backgroundColor", "#fff");
+    root.style.setProperty("--fontColor", "#000");
+    root.style.setProperty("--gridColor", "rgb(235, 235, 235)");
+    root.style.setProperty("--warnColor", "rgba(200, 200, 200, 0.25)");
+    root.style.setProperty("--graphLinesColor", "#e3e3e3");
 
     // appearanceBut.style.fill = "var(--backgroundColor)";
     appearanceBut.style.stroke = "var(--graphLinesColor)";
 
     localStorage.setItem("Appearance", "Light");
-  } else if(appearCount%2 != 0){
+  } else if (appearCount % 2 != 0) {
     console.log("Dark Mode");
 
-    root.style.setProperty('--swiper-theme-color', '#fff');
-    root.style.setProperty('--backgroundColor', '#0c0c0c');
-    root.style.setProperty('--fontColor', '#fff');
-    root.style.setProperty('--gridColor', 'rgb(30, 30, 30)');
-    root.style.setProperty('--warnColor', 'rgba(30, 30, 30, 0.25)');
-    root.style.setProperty('--graphLinesColor', '#2a2a2a');
+    root.style.setProperty("--swiper-theme-color", "#fff");
+    root.style.setProperty("--backgroundColor", "#0c0c0c");
+    root.style.setProperty("--fontColor", "#fff");
+    root.style.setProperty("--gridColor", "rgb(30, 30, 30)");
+    root.style.setProperty("--warnColor", "rgba(30, 30, 30, 0.25)");
+    root.style.setProperty("--graphLinesColor", "#2a2a2a");
 
     // appearanceBut.style.fill = "var(--backgroundColor)";
     appearanceBut.style.stroke = "var(--graphLinesColor)";
@@ -57,7 +57,7 @@ function changeAppearance(){
 
 var testAppear = localStorage.getItem("Appearance");
 
-if(testAppear == "Dark"){
+if (testAppear == "Dark") {
   changeAppearance();
 }
 
@@ -73,11 +73,11 @@ if (!isMobileDevice) {
   dodf.innerHTML +=
     '<div class="swiper-button-prev"></div><div class="swiper-button-next"></div>';
 
-  root.style.setProperty('--bulletGap', '6px');
-  root.style.setProperty('--bulletSize', '10px');
+  root.style.setProperty("--bulletGap", "6px");
+  root.style.setProperty("--bulletSize", "10px");
 } else {
-  root.style.setProperty('--bulletGap', '30px');
-  root.style.setProperty('--bulletSize', '12.5px');
+  root.style.setProperty("--bulletGap", "30px");
+  root.style.setProperty("--bulletSize", "12.5px");
 
   dodf.innerHTML +=
     '<div class="swiper-button-prev-mobile swiper-button-prev"></div><div class="swiper-button-next-mobile swiper-button-next"></div>';
@@ -175,11 +175,11 @@ if (!isMobileDevice) {
   });
 
   vall.forEach((item) => {
-    if(!item.classList.contains('unitUnused')){
+    if (!item.classList.contains("unitUnused")) {
       item.style.fontSize = "66.7px";
     }
 
-    root.style.setProperty('--sliderFontSize', '66.7px');;
+    root.style.setProperty("--sliderFontSize", "66.7px");
 
     // console.log(item.style.fontSize);
   });
@@ -197,9 +197,8 @@ var c = null;
 var f = null;
 var h = null;
 
-function getDweets(){
-  dweetio.get_latest_dweet_for("humiditytemptest", function(err, dweet){
-
+function getDweets() {
+  dweetio.get_latest_dweet_for("humiditytemptest", function (err, dweet) {
     var dweet = dweet[0]; // Dweet is always an array of 1
 
     // console.log(dweet.thing); // The generated name
@@ -208,7 +207,7 @@ function getDweets(){
     c = dweet.content.celsius;
     f = Math.round(dweet.content.fahrenheit);
     h = dweet.content.humidity;
-});
+  });
 }
 
 setInterval(() => {
@@ -239,7 +238,6 @@ var celsiusOn = false;
 var numbRun = 0;
 
 function showInfo() {
-  
   highTemp = Math.max(...temps);
   lowTemp = Math.min(...temps);
 
@@ -260,30 +258,29 @@ function showInfo() {
 
   // id.setAttribute("points", points);
 
-  
-
-  if(celsiusOn){
-    tempVal.innerHTML = ""+ c +"°";
+  if (celsiusOn) {
+    tempVal.innerHTML = "" + c + "°";
   } else {
-    tempVal.innerHTML = ""+ f +"°";
+    tempVal.innerHTML = "" + f + "°";
   }
 
-  humdVal.innerHTML = "" + h +"%";
-  
-  if(celsiusOn){
-    if(c == null){
-      warnWrap.style.bottom = "50px";
-      tempVal.innerHTML = "--°";
+  humdVal.innerHTML = "" + h + "%";
 
-      humdVal.innerHTML = "--%";
-    }
+  if (c == null || f == null) {
+    warnWrap.style.bottom = "50px";
+    tempVal.innerHTML = "--°";
+
+    humdVal.innerHTML = "--%";
   } else {
-    if(f == null){
-      warnWrap.style.bottom = "50px";
-      tempVal.innerHTML = "--°";
+    warnWrap.style.bottom = "-100px";
 
-      humdVal.innerHTML = "--%";
+    if (celsiusOn) {
+      tempVal.innerHTML = "" + c + "°";
+    } else {
+      tempVal.innerHTML = "" + f + "°";
     }
+
+    humdVal.innerHTML = "" + h + "%";
   }
 
   // localStorage.setItem("Font Size");
@@ -341,19 +338,22 @@ setInterval(function ff() {
 //   localStorage.setItem("Accent Color", );
 //   localStorage.setItem("Grid Bullet Size", );
 
-var fUnit = document.getElementById('tempF');
-var cUnit = document.getElementById('tempC');
+var fUnit = document.getElementById("tempF");
+var cUnit = document.getElementById("tempC");
 
 var unitUse = fUnit;
 
-function changeUnit(){
-  if(fUnit.classList.contains('unitUsed')){
+function changeUnit() {
+  if (fUnit.classList.contains("unitUsed")) {
     fUnit.classList.remove("unitUsed");
     fUnit.classList.add("unitUnused");
     cUnit.classList.remove("unitUnused");
     cUnit.classList.add("unitUsed");
 
-    root.style.setProperty("--unitRight", cUnit.getBoundingClientRect().right + "px");
+    root.style.setProperty(
+      "--unitRight",
+      cUnit.getBoundingClientRect().right + "px"
+    );
 
     celsiusOn = true;
     showInfo();
@@ -366,7 +366,10 @@ function changeUnit(){
     cUnit.classList.remove("unitUsed");
     cUnit.classList.add("unitUnused");
 
-    root.style.setProperty("--unitRight", fUnit.getBoundingClientRect().right + "px");
+    root.style.setProperty(
+      "--unitRight",
+      fUnit.getBoundingClientRect().right + "px"
+    );
 
     celsiusOn = false;
     showInfo();
@@ -378,16 +381,20 @@ function changeUnit(){
 
 var unit = localStorage.getItem("Unit");
 
-if(unit == "°C"){
+if (unit == "°C") {
   changeUnit();
 
   unitUse = cUnit;
 }
 
 setInterval(() => {
-  root.style.setProperty("--unitRight", unitUse.getBoundingClientRect().right - unitUse.parentElement.getBoundingClientRect().left + "px");
+  root.style.setProperty(
+    "--unitRight",
+    unitUse.getBoundingClientRect().right -
+      unitUse.parentElement.getBoundingClientRect().left +
+      "px"
+  );
 }, 50);
-
 
 // cUnit.parentElement.innerHTML = ;
 
