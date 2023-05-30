@@ -237,6 +237,8 @@ var celsiusOn = false;
 
 var numbRun = 0;
 
+var count = 0;
+
 function showInfo() {
   highTemp = Math.max(...temps);
   lowTemp = Math.min(...temps);
@@ -265,23 +267,27 @@ function showInfo() {
   }
 
   humdVal.innerHTML = "" + h + "%";
+      
+  if(count != 0){
+    if (c == null || f == null) {
+      warnWrap.style.bottom = "50px";
+      tempVal.innerHTML = "--°";
 
-  if (c == null || f == null) {
-    warnWrap.style.bottom = "50px";
-    tempVal.innerHTML = "--°";
-
-    humdVal.innerHTML = "--%";
-  } else {
-    warnWrap.style.bottom = "-100px";
-
-    if (celsiusOn) {
-      tempVal.innerHTML = "" + c + "°";
+      humdVal.innerHTML = "--%";
     } else {
-      tempVal.innerHTML = "" + f + "°";
-    }
+      warnWrap.style.bottom = "-100px";
 
-    humdVal.innerHTML = "" + h + "%";
+      if (celsiusOn) {
+        tempVal.innerHTML = "" + c + "°";
+      } else {
+        tempVal.innerHTML = "" + f + "°";
+      }
+
+      humdVal.innerHTML = "" + h + "%";
+    }
   }
+  
+  count++;
 
   // localStorage.setItem("Font Size");
   // localStorage.setItem("Bullet Gap");
