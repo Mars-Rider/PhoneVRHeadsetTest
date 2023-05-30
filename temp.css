@@ -8,6 +8,10 @@
   /* transition: 0.15s ease; */
 }
 
+body{
+  overflow-y: hidden;
+}
+
 :root{
   --sliderFontSize: 3em;
 
