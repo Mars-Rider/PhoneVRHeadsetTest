@@ -8,9 +8,7 @@
   /* transition: 0.15s ease; */
 }
 
-body{
-  overflow: hidden;
-}
+
 
 :root{
   --sliderFontSize: 3em;
@@ -35,6 +33,12 @@ body{
   --setExitButSize: 50px;
 
   --unitRight: 239.78125px;
+}
+
+body{
+  overflow: hidden;
+  
+  background: var(--backgroundColor);
 }
 
 /* :root[data-theme="light"]{
