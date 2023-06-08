@@ -277,11 +277,13 @@ function showInfo() {
   if(count != 0){
     if (c == null || f == null) {
       warnWrap.style.bottom = "50px";
+      warnWrap.style.opacity = "1";
       tempVal.innerHTML = "--°";
 
       humdVal.innerHTML = "--%";
     } else {
       warnWrap.style.bottom = "-100px";
+      warnWrap.style.opacity = "0";
 
       if (celsiusOn) {
         tempVal.innerHTML = "" + c + "°";
@@ -406,6 +408,7 @@ setInterval(() => {
       unitUse.parentElement.getBoundingClientRect().left +
       "px"
   );
+
 }, 50);
 
 // cUnit.parentElement.innerHTML = ;
