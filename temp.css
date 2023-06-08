@@ -39,6 +39,39 @@ body{
   overflow: hidden;
   
   background: var(--backgroundColor);
+  background-image: radial-gradient( 
+    var(--gridColor) var(--gridRadius), 
+    transparent 9% 
+  );
+
+  background-position: 0% 0%;
+  background-size: 60px 60px;
+
+  transition: background-position 0.5s ease;
+}
+
+body[data-active-index="0"]#body {
+  background-position: -125px 0;
+}
+
+body[data-active-index="1"]#body {
+  background-position: -250px 0;
+}
+
+body[data-active-index="2"]#body {
+  background-position: -375px 0;
+}
+
+body[data-active-index="3"]#body {
+  background-position: -500px 0;
+}
+
+body[data-active-index="4"]#body {
+  background-position: -625px 0;
+}
+
+body[data-active-index="5"]#body {
+  background-position: -750px 0;
 }
 
 /* :root[data-theme="light"]{
@@ -149,7 +182,7 @@ svg{
 #wrapper {
   width: 100%;
   height: 100dvh;
-  background: var(--backgroundColor);
+  /* background: var(--backgroundColor); */
 
   display: flex;
   justify-content: center;
@@ -161,12 +194,10 @@ svg{
 .swiper {
   width: 100dvw;
   height: 100dvh;
-  background-image: radial-gradient( 
+  /* background-image: radial-gradient( 
     var(--gridColor) var(--gridRadius), 
     transparent 9% 
-  );
-
-  background-image: radial-gradient();
+  ); */
 
   /* background-image: radial-gradient( 
     rgb(244 244 244) 9%, 
@@ -179,7 +210,7 @@ svg{
   transition: background-position 0.5s ease;
 }
 
-.swiper[data-active-index="0"].swiper {
+/* .swiper[data-active-index="0"].swiper {
   background-position: -125px 0%;
 }
 
@@ -201,7 +232,7 @@ svg{
 
 .swiper[data-active-index="5"].swiper {
   background-position: -750px 0%;
-}
+} */
 
 .swiper-slide span {
   display: inline-block;
