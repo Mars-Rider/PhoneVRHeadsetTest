@@ -187,10 +187,16 @@ if (!isMobileDevice) {
   menu.style.backgroundSize = "60px 60px";
 }
 
+var bodyEl = document.body;
+
 setInterval(function () {
   swiper.on("slideChange", function () {
     menu.dataset.activeIndex = swiper.activeIndex;
+    bodyEl.dataset.activeIndex = swiper.activeIndex;
+
+    console.log(document.body.dataset.activeIndex);
   });
+
 }, 200);
 
 var c = null;
