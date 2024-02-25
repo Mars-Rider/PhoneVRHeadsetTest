@@ -15,7 +15,7 @@
   
   --warnColor: rgba(200, 200, 200, 0.25);
 
-  --gridColor: rgb(235, 235, 235);
+  --gridColor: rgb(245, 245, 245);
   --swiper-theme-color: #222;
   --backgroundColor: #fff;
   --fontColor: #000;
@@ -23,6 +23,8 @@
   --humidityColor: #64a9ff;
   --tempColor: #ff6161ff;
   --graphLinesColor: #e3e3e3;
+  --infoPanelColor: rgb(245, 245, 245);
+  --curtainColor: rgba( 215, 215, 215, 0.25 );
 
   --fontFamily: "Lato";
   --bulletGap: 6px;
@@ -340,7 +342,7 @@ svg{
   border: none;
   background: none;
 
-  z-index: 11;
+  z-index: 16;
 
   cursor: pointer;
 }
@@ -352,7 +354,7 @@ svg{
   width: 92%;
   height: 92%;
 
-  z-index: 11;
+  z-index: 16;
 
   transition: all 0.25s ease;
 
@@ -1108,4 +1110,70 @@ swiper-container .swiper-notification {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   overflow: hidden;
+}
+
+#infopanel{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 200px;
+  width: 400px;
+  border-radius: 25px;
+  background-color: var(--infoPanelColor);
+  z-index: 20;
+  padding: 15px;
+  transition: 0.5s ease-in-out;
+  font-family: Lato;
+  color: var(--fontColor); 
+  box-shadow: 2.5px 2.5px 15px 2.5px rgba(0, 0, 0, 0.25)
+}
+
+header{
+  text-align: center;
+  font-size: larger;
+  font-family: Lato;
+  font-weight: bold;
+  color: var(--fontColor); 
+  margin-bottom: 5px;
+}
+
+header:nth-child(2){
+  font-size: medium !important;
+  margin-top: 5px;
+}
+
+header:nth-child(2) span{
+  text-align: center;
+  font-size: normal;
+  font-family: Lato;
+  font-weight: normal;
+  color: var(--fontColor); 
+  margin-bottom: 5px;
+}
+
+#infopanel.closed{
+  top: 125%!important;
+  z-index: 20;
+}
+
+#curtain{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  background-color: var(--curtainColor);
+  transition: 0.5s ease-in-out;
+  z-index: 15;
+  backdrop-filter: blur(1.5px);
+  pointer-events: inherit;
+}
+
+#curtain.closed{
+  opacity: 0% !important;
+  backdrop-filter: blur(0px)!important;
+  transition: 0.5s ease-in-out;
+  pointer-events: none;
 }
