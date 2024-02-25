@@ -33,6 +33,8 @@ function changeAppearance() {
     root.style.setProperty("--gridColor", "rgb(235, 235, 235)");
     root.style.setProperty("--warnColor", "rgba(200, 200, 200, 0.25)");
     root.style.setProperty("--graphLinesColor", "#e3e3e3");
+    root.style.setProperty("--infoPanelColor", "rgb(245, 245, 245)");
+    root.style.setProperty("--curtainColor", "rgba( 215, 215, 215, 0.25 )");
 
     // appearanceBut.style.fill = "var(--backgroundColor)";
     appearanceBut.style.stroke = "var(--graphLinesColor)";
@@ -47,6 +49,8 @@ function changeAppearance() {
     root.style.setProperty("--gridColor", "rgb(30, 30, 30)");
     root.style.setProperty("--warnColor", "rgba(30, 30, 30, 0.25)");
     root.style.setProperty("--graphLinesColor", "#2a2a2a");
+    root.style.setProperty("--infoPanelColor", "rgb(35, 35, 35)");
+    root.style.setProperty("--curtainColor", "rgba(0, 0, 0, 0.25 )");
 
     // appearanceBut.style.fill = "var(--backgroundColor)";
     appearanceBut.style.stroke = "var(--graphLinesColor)";
@@ -416,3 +420,17 @@ setInterval(() => {
 // var unused = Array(document.getElementsByClassName('unitUnused'));
 
 // unused.forEach(addEventListener('onclick', changeUnit()));
+
+var infoPanel = document.getElementById("infopanel");
+var curtian = document.getElementById("curtain");
+
+function toggleInfo(){
+  if (infoPanel.classList.contains("closed")){
+    //Panel is closed, open the panel
+    infoPanel.classList.remove("closed");
+    curtian.classList.remove("closed");
+  } else {
+    infoPanel.classList.add("closed");
+    curtian.classList.add("closed");
+  }
+}
